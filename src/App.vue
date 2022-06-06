@@ -1,13 +1,37 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <img
+    src="./assets/logo.png"
+    alt="Vue logo" />
+  <to-do-head name="TO-DO" />
+  <to-do-input @add-to-do="addToDo" />
+  <to-do-list
+    :todos="todos" />
 </template>
+
+<script> 
+import ToDoHead from './components/ToDoHead.vue'
+import ToDoInput from './components/ToDoInput.vue'
+import ToDoList from './components/ToDoList.vue'
+
+export default {
+  name: 'App',
+  components: {
+    ToDoHead,
+    ToDoInput,
+    ToDoList
+  },
+  data() {
+    return {
+      todos: ['발 닦기']
+    }
+  },
+  methods: {
+    addToDo(content) {
+      this.todos.push(content)
+    }
+  }
+}
+</script>
 
 <style>
 #app {
